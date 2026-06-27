@@ -88,7 +88,7 @@ ADMIN_PASSWORD=ChangeMe123!
 Create `client/.env`:
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=https://gmhk-tech-studio-api.onrender.com
 ```
 
 For MongoDB Atlas, replace `MONGODB_URI` with your Atlas connection string.
@@ -128,20 +128,82 @@ http://localhost:5173
 Backend runs at:
 
 ```text
-http://localhost:5000
+https://gmhk-tech-studio-api.onrender.com
 ```
 
 Health check:
 
 ```text
-GET http://localhost:5000/api/health
+GET https://gmhk-tech-studio-api.onrender.com/health
 ```
 
 Contact submissions:
 
 ```text
-POST http://localhost:5000/api/contact
+POST https://gmhk-tech-studio-api.onrender.com/api/contact
 ```
+
+## Deployment
+
+Deploy the backend first on Render, then deploy the frontend on Vercel.
+
+### Backend: Render
+
+Create a new Render **Web Service** from this GitHub repository.
+
+Use these settings:
+
+```text
+Root Directory: server
+Runtime: Node
+Build Command: npm install
+Start Command: npm start
+Health Check Path: /api/health
+```
+
+Add these Render environment variables:
+
+```env
+NODE_ENV=production
+MONGODB_URI=your-mongodb-atlas-connection-string
+CLIENT_URL=https://your-vercel-project.vercel.app
+JWT_SECRET=generate-a-long-random-secret
+JWT_EXPIRES_IN=1d
+ADMIN_EMAIL=admin@gmhktechstudio.in
+ADMIN_PASSWORD=change-this-before-launch
+```
+
+This repo also includes `render.yaml`, so Render Blueprints can prefill the backend service settings. You still need to fill the secret environment variables in Render.
+
+After Render deploys, test:
+
+```text
+https://your-render-service.onrender.com/api/health
+```
+
+### Frontend: Vercel
+
+Create a new Vercel project from this GitHub repository.
+
+Use these settings:
+
+```text
+Root Directory: client
+Framework Preset: Vite
+Build Command: npm run build
+Output Directory: dist
+Install Command: npm install
+```
+
+Add this Vercel environment variable:
+
+```env
+VITE_API_URL=https://your-render-service.onrender.com
+```
+
+The frontend includes `client/vercel.json` so React routes such as `/admin/login` and `/admin/dashboard` load correctly after refresh.
+
+After Vercel gives you the final production URL, copy it back into Render as `CLIENT_URL`, then redeploy the Render backend so CORS allows the live frontend.
 
 ## Admin Panel
 

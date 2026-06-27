@@ -21,7 +21,7 @@ const AdminLogin = () => {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          "Unable to login. Please make sure the backend server is running on http://localhost:5000."
+          "Unable to login. Please make sure the backend server is running on https://gmhk-tech-studio-api.onrender.com"
       );
     } finally {
       setLoading(false);
