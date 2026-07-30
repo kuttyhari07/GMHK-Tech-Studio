@@ -8,7 +8,7 @@ export const Navbar = () => {
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="GMHK Tech Studio home">
-        <span className="brand-mark">G</span>
+        <img src="/logo.png" alt="GMHK logo" className="brand-mark" />
         <span><strong>GMHK</strong><small>Tech Studio</small></span>
       </a>
       <button className="nav-toggle" aria-label="Toggle navigation" aria-expanded={isOpen} onClick={() => setIsOpen((current) => !current)}>
@@ -306,7 +306,7 @@ export const Footer = () => (
   <footer className="footer">
     <div className="footer-grid">
       <div>
-        <a className="brand" href="#top" aria-label="GMHK Tech Studio home"><span className="brand-mark">G</span><span><strong>GMHK</strong><small>Tech Studio</small></span></a>
+        <a className="brand" href="#top" aria-label="GMHK Tech Studio home"><img src="/logo.png" alt="GMHK logo" className="brand-mark" /><span><strong>GMHK</strong><small>Tech Studio</small></span></a>
         <p>Transforming Ideas into Digital Reality</p>
       </div>
       <div><h3>Quick Links</h3>{navLinks.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</div>
