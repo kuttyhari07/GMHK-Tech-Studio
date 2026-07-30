@@ -105,13 +105,7 @@ a {
   height: 42px;
   min-width: 42px;
   min-height: 42px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(255, 138, 61, 0.9));
-  box-shadow: var(--shadow-purple), var(--shadow-orange);
-}
-
+   border-radius: 50%;
 .brand-mark img {
   display: block;
   width: 100%;
@@ -1506,4 +1500,5 @@ h3 {
     opacity: 1;
     transform: none;
   }
+}
 }
