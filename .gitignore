@@ -8,3 +8,4 @@ server/.env
 uploads/*
 server/uploads/*
 !server/uploads/.gitkeep
+server/.env.example
